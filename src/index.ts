@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { AppDataSource } from './data-source';
-// import { app } from './app';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
