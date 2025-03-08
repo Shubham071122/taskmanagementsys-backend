@@ -16,3 +16,6 @@ yarn-error.log*
 .vercel
 .env.local
 .env.production
+
+# Dist
+dist/
