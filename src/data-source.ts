@@ -22,7 +22,7 @@
     ssl: {
         rejectUnauthorized: true,  // This is usually correct for Neon, can be false if you have issues.
     },
-    entities: [__dirname + '/../models/*.{js,ts}'],
+    entities: ['src/models/**/*.ts'],
     synchronize: true,  // set to false in production
     logging: false,
     });
