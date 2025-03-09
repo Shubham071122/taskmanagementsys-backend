@@ -17,7 +17,7 @@ const generateTokens = (user: User) => {
   const accessToken = jwt.sign(
     { userId: user.id, email: user.email },
     jwtSecret as jwt.Secret,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '15m' } as SignOptions
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '2h' } as SignOptions
   );
 
   const refreshToken = jwt.sign(
@@ -77,7 +77,7 @@ export const login = async (req: Request, res: Response) => {
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'none',
         path: '/',
-        maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m')
+        maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '2h')
       })
       .cookie('refreshToken', refreshToken, {
         httpOnly: true,
@@ -121,7 +121,7 @@ export const refreshToken = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'none',
-      maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m')
+      maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '2h')
     });
 
     res.cookie('refreshToken', newRefreshToken, {

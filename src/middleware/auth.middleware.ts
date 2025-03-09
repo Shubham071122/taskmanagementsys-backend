@@ -101,7 +101,7 @@ async function refreshAccessToken(
     const newAccessToken = jwt.sign(
       { userId: user.id, email: user.email },
       jwtSecret,
-      { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '15m' } as SignOptions
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRY || '2h' } as SignOptions
     );
 
     // Set new access token in cookies
@@ -109,7 +109,7 @@ async function refreshAccessToken(
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'none',
-      maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m'),
+      maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '2h'),
     });
 
     req.user = user;
