@@ -31,15 +31,18 @@ const generateTokens = (user: User) => {
 
 export const register = async (req: Request, res: Response) => {
 
+  console.log("Register request:", req.body);
   try {
     const { name, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    console.log("Hashed password:", hashedPassword);
     const user = userRepository.create({
       name,
       email: email.toLowerCase(),
       password: hashedPassword
     });
+    console.log("User created:", user);
 
 
     await userRepository.save(user);
