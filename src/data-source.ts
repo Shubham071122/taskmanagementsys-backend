@@ -1,5 +1,7 @@
     import { DataSource } from 'typeorm';
     import dotenv from 'dotenv';
+    import { Task } from './models/Task';
+    import { User } from './models/User';
 
     dotenv.config();
 
@@ -22,7 +24,7 @@
     ssl: {
         rejectUnauthorized: true,  // This is usually correct for Neon, can be false if you have issues.
     },
-    entities: ['src/models/**/*.ts'],
+    entities: [User, Task],
     synchronize: true,  // set to false in production
     logging: false,
     });
