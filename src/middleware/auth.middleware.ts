@@ -108,7 +108,7 @@ async function refreshAccessToken(
     res.cookie('accessToken', newAccessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m'),
     });
 

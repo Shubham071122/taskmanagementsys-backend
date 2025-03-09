@@ -75,14 +75,14 @@ export const login = async (req: Request, res: Response) => {
       .cookie('accessToken', accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'none',
         path: '/',
         maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m')
       })
       .cookie('refreshToken', refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'none',
         path: '/',
         maxAge: getCookieMaxAge(process.env.REFRESH_TOKEN_EXPIRY || '7d')
       })
@@ -120,14 +120,14 @@ export const refreshToken = async (req: Request, res: Response) => {
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: getCookieMaxAge(process.env.ACCESS_TOKEN_EXPIRY || '15m')
     });
 
     res.cookie('refreshToken', newRefreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: getCookieMaxAge(process.env.REFRESH_TOKEN_EXPIRY || '7d')
     });
 
@@ -143,14 +143,14 @@ export const logout = (req: Request, res: Response) => {
     res.clearCookie('accessToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       path: '/'
     });
 
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       path: '/'
     });
 
